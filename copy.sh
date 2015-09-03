@@ -11,10 +11,29 @@ if [ ! -d "$DIR/snapshots" ]; then
     mkdir "$DIR/snapshots"
 fi
 
+# if original
+CLONEDIR=$DIR
+if [ $1 == 'original' ]; then
+    CLONEDIR=$DIR/original
+    if [ ! -d "$CLONEDIR" ]; then
+        mkdir $CLONEDIR
+    fi
+
+    if [ "$(ls -A $CLONEDIR)" ]; then
+        echo "$CLONEDIR found"
+    else
+        echo "create a backup under $($CLONEDIR) by using:"
+        echo "mongorestore path/to/dump && cp brandcast.* ./original"
+        exit;
+    fi
+fi
+
+# use original copy
+
 mkdir $SNAPSHOT_DIR
 
 echo $SNAPSHOT_DIR
 
-cp $DIR/brandcast.* $DIR/snapshots/$SNAPSHOT
+cp $CLONEDIR/brandcast.* $DIR/snapshots/$SNAPSHOT
 
 # cp /usr/local/var/mongodb/brandcast.* /usr/local
