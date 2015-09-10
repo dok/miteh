@@ -23,7 +23,8 @@ if [ $1 == 'original' ]; then
         echo "$CLONEDIR found"
     else
         echo "create a backup under $($CLONEDIR) by using:"
-        echo "mongorestore path/to/dump && cp brandcast.* ./original"
+        # In versions of mongo 3.0+ we have to specify the db
+        echo "mongorestore --host=127.0.0.1 -d brandcast path/to/dump && cp brandcast.* ./original"
         exit;
     fi
 fi
