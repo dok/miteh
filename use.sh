@@ -9,10 +9,10 @@ CONFIG_FILE=/usr/local/etc/mongod.conf
 if [ $1 == 'latest' ]; then
     var0="$(ls -t $DIR | sort | tail -1)"
     SNAPSHOT_DIR=$DIR/$var0
-fi
-
-if [ $1 == 'original' ]; then
+elif [ $1 == 'original' ]; then
     SNAPSHOT_DIR=$DIR/..
+else
+    SNAPSHOT_DIR=$DIR/$1
 fi
 
 # sed -i -e 's/^\(dbpath\s*=\s*\).*\$/\1$SNAPSHOT_DIR/' $CONFIG_FILE
