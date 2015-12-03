@@ -1,6 +1,5 @@
 #!/bin/bash
 DIR=/usr/local/var/mongodb
-
 prefix=brandclone
 suffix=$(date +%s)  # The "+%s" option to 'date' is GNU-specific.
 SNAPSHOT=$prefix.$suffix
@@ -15,19 +14,23 @@ fi
 CLONEDIR=$DIR
 if [ $1 == 'original' ]; then
     CLONEDIR=$DIR/original
-    if [ ! -d "$CLONEDIR" ]; then
-        mkdir $CLONEDIR
-    fi
-
-    if [ "$(ls -A $CLONEDIR)" ]; then
-        echo "$CLONEDIR found"
-    else
-        echo "create a backup under $($CLONEDIR) by using:"
-        # In versions of mongo 3.0+ we have to specify the db
-        echo "mongorestore --host=127.0.0.1 -d brandcast path/to/dump && cp brandcast.* ./original"
-        exit;
-    fi
+else
+    CLONEDIR=$DIR/snapshots/$1
 fi
+
+if [ ! -d "$CLONEDIR" ]; then
+    mkdir $CLONEDIR
+fi
+
+if [ "$(ls -A $CLONEDIR)" ]; then
+    echo "$CLONEDIR found"
+else
+    echo "create a backup under $($CLONEDIR) by using:"
+    # In versions of mongo 3.0+ we have to specify the db
+    echo "mongorestore --host=127.0.0.1 -d brandcast path/to/dump && cp brandcast.* ./original"
+    exit;
+fi
+
 
 # use original copy
 
