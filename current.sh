@@ -1,0 +1,1 @@
+ps -xa | grep mongod
