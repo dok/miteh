@@ -5,8 +5,8 @@ shell commands to snapshot local mongo images
 
 legend: [required]{command} [optional]{name}
 
-./smig.sh use {latest|original}
+./smig use {latest|original}
 
-./smig.sh copy
+./smig copy
 
-./smig.sh clean
+./smig clean
