@@ -10,9 +10,9 @@ else
     echo "That command does not exist: $cmd"
     echo "-------------------USAGE----------------------"
     echo "legend: [required]{command} [optional]{name}"
-    echo "./smig.sh use {latest|original|name_of_snapshot}"
-    echo "./smig.sh copy {original|name_of_snapshot}"
-    echo "./smig.sh ls"
-    echo "./smig.sh clean"
+    echo "./smig use {latest|original|name_of_snapshot}"
+    echo "./smig copy {original|name_of_snapshot}"
+    echo "./smig ls"
+    echo "./smig clean"
     echo "----------------------------------------------"
 fi
