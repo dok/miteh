@@ -1,16 +1,14 @@
 #!/bin/bash
-DIR=/usr/local/var/mongodb/snapshots
+DIR=/usr/local/var/mongodb_snapshots
 arg=$1
 commandArg=$2
-SNAPSHOT_DIR=$DIR/$1
+SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
 
 CONFIG_FILE=/usr/local/etc/mongod.conf
 
 if [ $1 == 'latest' ]; then
     var0="$(ls -t $DIR | sort | tail -1)"
     SNAPSHOT_DIR=$DIR/$var0
-elif [ $1 == 'original' ]; then
-    SNAPSHOT_DIR=$DIR/..
 else
     SNAPSHOT_DIR=$DIR/$1
 fi

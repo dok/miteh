@@ -4,18 +4,15 @@ prefix=brandclone
 suffix=$(date +%s)  # The "+%s" option to 'date' is GNU-specific.
 SNAPSHOT=$prefix.$suffix
 
-SNAPSHOT_DIR=$DIR/snapshots/$SNAPSHOT
-
-if [ ! -d "$DIR/snapshots" ]; then
-    mkdir "$DIR/snapshots"
-fi
+SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
+NEW_SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/$SNAPSHOT
 
 # if original
 CLONEDIR=$DIR
 if [ $1 == 'original' ]; then
-    CLONEDIR=$DIR/original
+    CLONEDIR=/usr/local/var/mongodb_original
 else
-    CLONEDIR=$DIR/snapshots/$1
+    CLONEDIR=$SNAPSHOT_DIR/$1
 fi
 
 if [ ! -d "$CLONEDIR" ]; then
@@ -34,10 +31,10 @@ fi
 
 # use original copy
 
-mkdir $SNAPSHOT_DIR
+mkdir $NEW_SNAPSHOT_DIR
 
-echo $SNAPSHOT_DIR
+echo $NEW_SNAPSHOT_DIR
 
-cp $CLONEDIR/brandcast.* $DIR/snapshots/$SNAPSHOT
+cp -R $CLONEDIR/* $SNAPSHOT_DIR/$SNAPSHOT
 
 # cp /usr/local/var/mongodb/brandcast.* /usr/local
