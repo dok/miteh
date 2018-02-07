@@ -1,11 +1,28 @@
 #!/bin/bash
-DIR=/usr/local/var/mongodb
 prefix=brandclone
 suffix=$(date +%s)  # The "+%s" option to 'date' is GNU-specific.
 SNAPSHOT=$prefix.$suffix
 
-SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
-NEW_SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/$SNAPSHOT
+
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='mac'
+fi
+
+if [[ $platform == 'linux' ]]; then
+    DIR=/var/lib/mongodb
+    SNAPSHOT_DIR=/var/lib/mongodb_snapshots/
+ellif [[ $platform == 'mac' ]]; then
+    DIR=/usr/local/var/mongodb
+    SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
+fi
+
+NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
+
+
 
 # if original
 CLONEDIR=$DIR
