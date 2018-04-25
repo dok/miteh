@@ -1,5 +1,5 @@
 #!/bin/bash
-prefix=brandclone
+prefix=clone
 suffix=$(date +%s)  # The "+%s" option to 'date' is GNU-specific.
 SNAPSHOT=$prefix.$suffix
 
@@ -12,13 +12,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='mac'
 fi
 
-if [[ $platform == 'linux' ]]; then
-    DIR=/var/lib/mongodb
-    SNAPSHOT_DIR=/var/lib/mongodb_snapshots/
-ellif [[ $platform == 'mac' ]]; then
-    DIR=/usr/local/var/mongodb
-    SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
-fi
+DIR=/usr/local/var/mongodb
+SNAPSHOT_DIR=/data/snapshots/
 
 NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 
@@ -27,7 +22,7 @@ NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 # if original
 CLONEDIR=$DIR
 if [ $1 == 'original' ]; then
-    CLONEDIR=/usr/local/var/mongodb_original
+    CLONEDIR=/data/original
 else
     CLONEDIR=$SNAPSHOT_DIR/$1
 fi
@@ -54,4 +49,4 @@ echo $NEW_SNAPSHOT_DIR
 
 cp -R $CLONEDIR/* $SNAPSHOT_DIR/$SNAPSHOT
 
-# cp /usr/local/var/mongodb/brandcast.* /usr/local
+# cp /data/clone.* /data//local
