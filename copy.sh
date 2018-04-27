@@ -1,5 +1,5 @@
 #!/bin/bash
-prefix=brandclone
+prefix=clone
 suffix=$(date +%s)  # The "+%s" option to 'date' is GNU-specific.
 SNAPSHOT=$prefix.$suffix
 
@@ -15,9 +15,9 @@ fi
 if [[ $platform == 'linux' ]]; then
     DIR=/var/lib/mongodb
     SNAPSHOT_DIR=/var/lib/mongodb_snapshots/
-ellif [[ $platform == 'mac' ]]; then
+elif [[ $platform == 'mac' ]]; then
     DIR=/usr/local/var/mongodb
-    SNAPSHOT_DIR=/usr/local/var/mongodb_snapshots/
+    SNAPSHOT_DIR=/data/snapshots/
 fi
 
 NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
@@ -27,7 +27,7 @@ NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 # if original
 CLONEDIR=$DIR
 if [ $1 == 'original' ]; then
-    CLONEDIR=/usr/local/var/mongodb_original
+    CLONEDIR=/data/original
 else
     CLONEDIR=$SNAPSHOT_DIR/$1
 fi
@@ -41,7 +41,7 @@ if [ "$(ls -A $CLONEDIR)" ]; then
 else
     echo "create a backup under $($CLONEDIR) by using:"
     # In versions of mongo 3.0+ we have to specify the db
-    echo "mongorestore --host=127.0.0.1 -d brandcast path/to/dump && cp brandcast.* ./original"
+    echo "mongorestore --host=127.0.0.1 -d clone path/to/dump && cp clone.* ./original"
     exit;
 fi
 

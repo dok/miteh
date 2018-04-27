@@ -1,3 +1,3 @@
-DIR=/usr/local/var/mongodb_snapshots
+DIR=/data/snapshots/
 
 du -sh $DIR/*/
