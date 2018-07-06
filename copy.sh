@@ -12,13 +12,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     platform='mac'
 fi
 
-if [[ $platform == 'linux' ]]; then
-    DIR=/var/lib/mongodb
-    SNAPSHOT_DIR=/var/lib/mongodb_snapshots/
-elif [[ $platform == 'mac' ]]; then
-    DIR=/usr/local/var/mongodb
-    SNAPSHOT_DIR=/data/snapshots/
-fi
+DIR=/usr/local/var/mongodb
+SNAPSHOT_DIR=/data/snapshots/
 
 NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 
@@ -54,4 +49,4 @@ echo $NEW_SNAPSHOT_DIR
 
 cp -R $CLONEDIR/* $SNAPSHOT_DIR/$SNAPSHOT
 
-# cp /usr/local/var/mongodb/brandcast.* /usr/local
+# cp /data/clone.* /data//local

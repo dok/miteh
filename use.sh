@@ -2,7 +2,7 @@
 DIR=/data/snapshots
 arg=$1
 commandArg=$2
-SNAPSHOT_DIR=/data/snapshots/
+SNAPSHOT_DIR=/data/snapshots
 
 CONFIG_FILE=/usr/local/etc/mongod.conf
 
