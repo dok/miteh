@@ -14,7 +14,7 @@ The tool needs a certain `/data/db/` structure for it to work
 
 `/original` should contain your image
 
-![Example of Structure(https://user-images.githubusercontent.com/1214868/42394934-bf662520-8110-11e8-9fb6-45da42723c33.png)
+![Example of Structure](https://user-images.githubusercontent.com/1214868/42394934-bf662520-8110-11e8-9fb6-45da42723c33.png)
 
 
 
