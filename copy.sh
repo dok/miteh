@@ -13,7 +13,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 DIR=/usr/local/var/mongodb
-SNAPSHOT_DIR=/data/snapshots/
+SNAPSHOT_DIR=/Users/seandokko/workspace/data/snapshots/
 
 NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 
@@ -22,7 +22,7 @@ NEW_SNAPSHOT_DIR=$SNAPSHOT_DIR$SNAPSHOT
 # if original
 CLONEDIR=$DIR
 if [ $1 == 'original' ]; then
-    CLONEDIR=/data/original
+    CLONEDIR=/Users/seandokko/workspace/data/original
 else
     CLONEDIR=$SNAPSHOT_DIR/$1
 fi

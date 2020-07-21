@@ -1,12 +1,14 @@
 #!/bin/bash
-DIR=/data/snapshots
+DIR=/Users/seandokko/workspace/data/snapshots
 arg=$1
 commandArg=$2
-SNAPSHOT_DIR=/data/snapshots
+SNAPSHOT_DIR=/Users/seandokko/workspace/data/snapshots
 
 CONFIG_FILE=/usr/local/etc/mongod.conf
 
-if [ $1 == 'latest' ]; then
+if [ $1 == 'original' ]; then
+    SNAPSHOT_DIR=/Users/seandokko/workspace/data/original
+elif [ $1 == 'latest' ]; then
     var0="$(ls -t $DIR | sort | tail -1)"
     SNAPSHOT_DIR=$DIR/$var0
 elif [ $1 == 'local' ]; then
@@ -20,5 +22,6 @@ fi
 if [ -d "$SNAPSHOT_DIR" ]; then
     echo "using ${SNAPSHOT_DIR}"
     mongo admin --eval 'db.shutdownServer()'
-    mongod --fork --logpath /usr/local/var/log/mongodb/mongo.log --dbpath $SNAPSHOT_DIR
+    echo mongod --fork --dbpath $SNAPSHOT_DIR --config $CONFIG_FILE
+    mongod --fork --dbpath $SNAPSHOT_DIR --config $CONFIG_FILE
 fi
