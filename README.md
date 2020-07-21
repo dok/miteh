@@ -20,7 +20,8 @@ The tool needs a certain `/data/db/` structure for it to work
 
 ### Usage
 
-![screen shot 2018-07-06 at 11 36 51 am](https://user-images.githubusercontent.com/1214868/42394967-e7bc35aa-8110-11e8-8bb6-f81d6216ad1a.png)
+![screen shot 2018-07-06 at 11 40 56 am](https://user-images.githubusercontent.com/1214868/42395116-81572e4a-8111-11e8-8de9-ac3944cb8911.png)
+
 
 legend: [required]{command} [optional]{name}
 
